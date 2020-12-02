@@ -1,3 +1,4 @@
+require 'benchmark'
 
 def isValid(line)
   count = 0
@@ -22,11 +23,27 @@ def isValid2(line)
   return (parts[2][indexes[0].to_i-1] == parts[1]) ^ (parts[2][indexes[1].to_i-1] == parts[1])
 end
 
-count = 0
-for line in File.read("input.txt").split("\n") do
-  if isValid2 line
-    count+=1
+def silver()
+  count = 0
+  for line in File.read("input.txt").split("\n") do
+    if isValid line
+      count+=1
+    end
   end
+  #puts count
 end
 
-puts count
+def gold()
+  count = 0
+  for line in File.read("input.txt").split("\n") do
+    if isValid2 line
+      count+=1
+    end
+  end
+  #puts count
+end
+
+Benchmark.bm do |x|
+  x.report("Silver") {silver}
+  x.report("Gold") {gold}
+end
