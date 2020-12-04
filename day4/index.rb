@@ -55,7 +55,7 @@ def valid_values(passport)
         return false
       end
     when "pid" #ok
-      if !val[1].match(/[0-9]{9}/)
+      if !val[1].match(/[0-9]{9}/) || val[1].length() != 9
         return false
       end
     end
