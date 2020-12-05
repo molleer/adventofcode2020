@@ -47,7 +47,7 @@ def valid_values(passport)
         return false
       end
     when "hcl" #ok
-      if !val[1].match(/#[a-fA-F0-9]{6}/)
+      if !val[1].match(/^#[a-fA-F0-9]{6}$/)
         return false
       end
     when "ecl" #ok
@@ -55,7 +55,7 @@ def valid_values(passport)
         return false
       end
     when "pid" #ok
-      if !val[1].match(/[0-9]{9}/) || val[1].length() != 9
+      if !val[1].match(/^[0-9]{9}$/)
         return false
       end
     end
