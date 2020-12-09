@@ -1,15 +1,17 @@
 //
 // Created by David on 2020-12-08.
 //
+#ifndef ADVENOFCODE_DAY1
+#define ADVENOFCODE_DAY1
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include "../FileReader.h"
-
 using namespace std;
 
-int main() {
+int day1() {
     auto *input = FileReader::read("../input/day1.txt");
     int *nums = new int[input->size()];
     for(int i = 0; i<input->size(); i++)
@@ -24,3 +26,5 @@ int main() {
                 }
     return 0;
 }
+
+#endif
