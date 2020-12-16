@@ -60,25 +60,27 @@ for k in 0..maxI
 end
 
 def filter_fields(valid_fields)
-    return [] if valid_fields.length() == 0
+    return [] if valid_fields.reject{|i| i.length() == 0}.length() == 0
     name = ""
-    for f in valid_fields
-        if f.length() == 1
-            name = f[0]
+    id = 0
+    for i in 0..valid_fields.length()-1
+        if valid_fields[i].length() == 1
+            name = valid_fields[i][0]
+            id = i
             break
         end
     end
 
-    valid_fields = valid_fields.map{|fs| fs.reject{|n| n == name}}.reject{|i| i.length()==0}
+    valid_fields = valid_fields.map{|fs| fs.reject{|n| n == name}}
     names = filter_fields(valid_fields)
-    names.push(name)
+    names[id] = name
     return names
 end
 
 puts my_ticket.to_s
 
 mul = 1
-fs = filter_fields(validFields).reverse
+fs = filter_fields(validFields)
 for k in 0..fs.length()-1
     if fs[k].include? "departure"
         puts k.to_s + ": " + fs[k] + "=" + my_ticket[k].to_s
